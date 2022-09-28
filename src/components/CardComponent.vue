@@ -9,7 +9,7 @@ export default {
     name:'CardComponent',
     data(){
         return{
-            imgUrl:'https://image.tmdb.org/t/p/w342'
+            imgUrl:'https://image.tmdb.org/t/p/w185'
         }
     },
     props:
