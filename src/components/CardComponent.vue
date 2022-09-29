@@ -45,6 +45,10 @@ export default {
                 country = 'gb';
                 break;
                 }
+                case 'uk':{
+                country = 'gb';
+                break;
+                }
                 case 'ja':{
                 country = 'jp'
                 break;
