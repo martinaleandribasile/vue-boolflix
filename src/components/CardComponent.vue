@@ -1,9 +1,11 @@
 <template>
     <div class="element-card p-3 ">
        <div class="position-relative" v-if="!hover">
-         <img  @click="displayDettails()" class=" img-poster-title img-fluid" :src="imgUrl + arrayElement.poster_path" alt=""/>
+        <button class="btn btn-warning position-absolute end-0" @click="displayDettails()">Info</button>
+         <img   class=" img-poster-title img-fluid" :src="imgUrl + arrayElement.poster_path" alt=""/>
         </div>
-        <div  @click='displayDettails()' v-else class="gap-2 info-container"> 
+        <div   v-else class="gap-2 info-container">
+            <button @click='displayDettails()' class="btn btn-dark w-20 align-self-end">Back</button> 
             <h5  v-if="arrayElement.title"><span>Titolo: </span>{{arrayElement.title}}</h5>
             <h5 v-else><span>Titolo: </span>{{arrayElement.name}}</h5>
             <h6 v-if="arrayElement.title"> <span>Titolo originale: </span>{{arrayElement.original_title}}</h6>
