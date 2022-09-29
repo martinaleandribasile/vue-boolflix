@@ -2,13 +2,13 @@
   <main>
     <div class="text-container gap-3">
         <h2 v-if="input.length<=0">Search your Films or Tv Series</h2>
-        <div v-if="input.length>0" class="d-flex flex-column card-container">
+        <div v-if="input.length>0" class="d-flex flex-column card-container align-items-center">
             <h2 class="p-3 border border-light border-3 rounded-3">Film</h2>
-            <div class="d-flex flex-wrap"><CardComponent :arrayElement='film' v-for='film in movies' :key='film.id'/></div>
+            <div class="d-flex flex-wrap justify-content-start"><CardComponent :arrayElement='film' v-for='film in movies' :key='film.id'/></div>
         </div>
-        <div class="d-flex flex-column card-container" v-if="input.length>0">
-            <h2 class="p-3 border border-light border-3 rounded-3">Series</h2>
-           <div class="d-flex flex-wrap"> <CardComponent :arrayElement='serie'  v-for='serie in series' :key='serie.id'/></div>
+        <div class="d-flex flex-column card-container align-items-center" v-if="input.length>0">
+            <h2 class="p-3 border border-light border-3 rounded-3 series">Series</h2>
+           <div class="d-flex flex-wrap justify-content-start"> <CardComponent :arrayElement='serie'  v-for='serie in series' :key='serie.id'/></div>
         </div>
     </div>   
   </main>
@@ -52,7 +52,11 @@ main{
             width: 80%;
             margin: 150px auto;
             h2{
+                width: 100px;
                 color: white;
+            }
+            .series{
+                width: 130px;
             }
         }
         
