@@ -12,10 +12,6 @@ import axios from 'axios'
 
 export default {
   name: 'App',
-  created(){
-    
-    
-  },
   data(){
     return{
       textInput:"",
@@ -27,6 +23,14 @@ export default {
       castMovies:[],
       castSeries:[]
     }
+  },
+  created(){
+    
+      axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.queryKey}&language=en-US`)
+      .then((response)=>{
+        console.log('generi',response)
+      })
+    
   },
   methods:{
     callApiMovies(){ 
@@ -58,11 +62,13 @@ export default {
           cast.push(response.data.cast)
         })
       })
+      console.log(cast)
     },
     getIndexArray(array, arrayIndex){
         array.forEach((item)=>{
         arrayIndex.push(item.id)
       })
+      console.log('index',arrayIndex)
     },
     saveInputText(value){
       console.log(value)

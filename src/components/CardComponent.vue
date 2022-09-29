@@ -19,16 +19,16 @@
                 <i v-for="key in 5" :key="key" :class='createIntegerVote(arrayElement.vote_average) >= key ? "fa-solid" : "fa-regular"' class="fa-star"></i>
             </div>
             <p> <span>Overwiev: </span>{{arrayElement.overview}}</p>
-            <span v-if="arrayElement.title">Cast: 
+            <span v-if="arrayElement.title" >Cast: 
                 <ul>
                     <li v-show='cast.order < 5' v-for="cast in castMovie[indexMovies]" :key="cast.id">{{cast.name}}</li>
                 </ul>
             </span>
-            <span v-if="arrayElement.name">Cast: 
+           <!-- <span >Cast: NON FUNZIONA
                 <ul>
                     <li v-show='castTV.order < 5' v-for="castTV in castSerie[indexSerie]" :key="castTV.id">{{cast.name}}</li>
                 </ul>
-            </span>
+            </span>-->
 
            
         </div>
