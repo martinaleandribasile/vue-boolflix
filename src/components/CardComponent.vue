@@ -6,13 +6,14 @@
             <h5 v-else><span>Titolo: </span>{{arrayElement.name}}</h5>
             <h6 v-if="arrayElement.title"> <span>Titolo originale: </span>{{arrayElement.original_title}}</h6>
             <h6 v-else><span>Titolo originale: </span>{{arrayElement.original_name}}</h6>
-            <p>Language: 
+            <span>Language: 
                 <img class="flag" 
                     :src="getFlag(arrayElement.original_language)"
                     :alt="arrayElement.original_language"
                     @error="fixImageError($event)" />     
-            </p> 
+            </span> 
             <div class="star-icon">
+                <span>Voto: </span>
                 <i v-for="key in 5" :key="key" :class='createIntegerVote(arrayElement.vote_average) >= key ? "fa-solid" : "fa-regular"' class="fa-star"></i>
             </div>
             <p> <span>Overwiev: </span>{{arrayElement.overview}}</p>
