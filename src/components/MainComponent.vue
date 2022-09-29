@@ -2,13 +2,13 @@
   <main>
     <div class="text-container gap-3">
         <h2 v-if="input.length<=0">Search your Films or Tv Series</h2>
-        <div v-if="input.length>0" class="d-flex flex-column card-container align-items-center">
+        <div v-if="movies.length>0" class="d-flex flex-column card-container align-items-center">
             <h2 class="p-3 border border-light border-3 rounded-3">Film</h2>
-            <div class="d-flex flex-wrap justify-content-start"><CardComponent :arrayElement='film' v-for='film in movies' :key='film.id'/></div>
+            <div class="d-flex flex-wrap justify-content-start"><CardComponent :castMovie="castMovie" :indexMovies="index" :arrayElement='film' v-for="(film,index) in movies" :key='film.id'/></div>
         </div>
-        <div class="d-flex flex-column card-container align-items-center" v-if="input.length>0">
+        <div class="d-flex flex-column card-container align-items-center" v-if="series.length>0">
             <h2 class="p-3 border border-light border-3 rounded-3 series">Series</h2>
-           <div class="d-flex flex-wrap justify-content-start"> <CardComponent :arrayElement='serie'  v-for='serie in series' :key='serie.id'/></div>
+           <div class="d-flex flex-wrap justify-content-start"> <CardComponent :castSerie="castSerie" :arrayElement='serie' :indexSerie="index"  v-for='(serie,index) in series' :key='serie.id'/></div>
         </div>
     </div>   
   </main>
@@ -24,13 +24,15 @@ export default {
     props:{
         movies:Array,
         series:Array,
-        input:String
+        input:String,
+        castMovie:Array,
+        castSerie:Array
     },
     data(){
         return{
             
         }
-    }
+    },
 }
 </script>
 

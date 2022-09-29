@@ -1,7 +1,9 @@
 <template>
-    <div class="element-card p-3 " v-if="arrayElement.poster_path">
-        <img v-if="!hover" @mouseover="displayDettails()" class=" img-poster-title img-fluid" :src="imgUrl + arrayElement.poster_path" alt="">
-        <div  @mouseout='displayDettails()' v-else class="gap-2 info-container"> 
+    <div class="element-card p-3 ">
+       <div class="position-relative" v-if="!hover">
+         <img  @click="displayDettails()" class=" img-poster-title img-fluid" :src="imgUrl + arrayElement.poster_path" alt=""/>
+        </div>
+        <div  @click='displayDettails()' v-else class="gap-2 info-container"> 
             <h5  v-if="arrayElement.title"><span>Titolo: </span>{{arrayElement.title}}</h5>
             <h5 v-else><span>Titolo: </span>{{arrayElement.name}}</h5>
             <h6 v-if="arrayElement.title"> <span>Titolo originale: </span>{{arrayElement.original_title}}</h6>
@@ -17,6 +19,18 @@
                 <i v-for="key in 5" :key="key" :class='createIntegerVote(arrayElement.vote_average) >= key ? "fa-solid" : "fa-regular"' class="fa-star"></i>
             </div>
             <p> <span>Overwiev: </span>{{arrayElement.overview}}</p>
+            <span v-if="arrayElement.title">Cast: 
+                <ul>
+                    <li v-show='cast.order < 5' v-for="cast in castMovie[indexMovies]" :key="cast.id">{{cast.name}}</li>
+                </ul>
+            </span>
+            <span v-if="arrayElement.name">Cast: 
+                <ul>
+                    <li v-show='castTV.order < 5' v-for="castTV in castSerie[indexSerie]" :key="castTV.id">{{cast.name}}</li>
+                </ul>
+            </span>
+
+           
         </div>
     </div>
 </template>
@@ -31,11 +45,20 @@ export default {
             hover:false
         }
     },
-    props:
-        ['arrayElement'],
+    props:{
+        arrayElement:Object,
+        indexMovies:Number,
+        castMovie:Array,
+        indexSerie:Number,
+        castSerie:Array,
+    },
     methods:{
+
         createIntegerVote(n){
             let vote = Math.floor(n / 2)
+            if(vote===0){
+                vote=1
+            }//solo per nn lasciare stelline vuote
             return vote
         },
 
@@ -69,7 +92,7 @@ export default {
             }
             
         },
-  }
+  },
     
    
 }
