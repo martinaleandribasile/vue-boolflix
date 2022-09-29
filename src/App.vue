@@ -1,7 +1,7 @@
 <template>
   <div id="app">
    <HeaderComponent @sendInputText="saveInputText"/>
-   <MainComponent :castSerie='castSeries' :castMovie='castMovies' :movies='arrayMovies' :series='arraySeries' :input="textInput" />
+   <MainComponent :generi="generiApi" :castSerie='castSeries' :castMovie='castMovies' :movies='arrayMovies' :series='arraySeries' :input="textInput" />
   </div>
 </template>
 
@@ -21,14 +21,16 @@ export default {
       indexMoviesArr:[],
       indexSeriesArr:[],
       castMovies:[],
-      castSeries:[]
+      castSeries:[],
+      generiApi:[]
     }
   },
   created(){
     
       axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.queryKey}&language=en-US`)
       .then((response)=>{
-        console.log('generi',response)
+        this.generiApi=response.data.genres
+        console.log('generi',this.generiApi)
       })
     
   },

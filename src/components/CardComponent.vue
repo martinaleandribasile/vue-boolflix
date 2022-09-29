@@ -14,6 +14,11 @@
                     :alt="arrayElement.original_language"
                     @error="fixImageError($event)" />     
             </span> 
+            <span>Generi:
+                <ul>
+                    <li v-show="arrayElement.genre_ids.includes(genere.id)" class="text-white" v-for="genere in generi" :key="genere.id">{{genere.name}}</li>
+                </ul>
+            </span>
             <div class="star-icon">
                 <span>Voto: </span>
                 <i v-for="key in 5" :key="key" :class='createIntegerVote(arrayElement.vote_average) >= key ? "fa-solid" : "fa-regular"' class="fa-star"></i>
@@ -21,7 +26,7 @@
             <p> <span>Overwiev: </span>{{arrayElement.overview}}</p>
             <span v-if="arrayElement.title" >Cast: 
                 <ul>
-                    <li v-show='cast.order < 5' v-for="cast in castMovie[indexMovies]" :key="cast.id">{{cast.name}}</li>
+                    <li class='text-white' v-show='cast.order < 5' v-for="cast in castMovie[indexMovies]" :key="cast.id">{{cast.name}}</li>
                 </ul>
             </span>
            <!-- <span >Cast: NON FUNZIONA
@@ -51,9 +56,10 @@ export default {
         castMovie:Array,
         indexSerie:Number,
         castSerie:Array,
+        generi:Array
     },
     methods:{
-
+       
         createIntegerVote(n){
             let vote = Math.floor(n / 2)
             if(vote===0){
