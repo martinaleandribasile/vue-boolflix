@@ -3,8 +3,8 @@
     <div class='container-header'>
         <h1>BOOTFLIX</h1>
         <div class="d-flex gap-3">
-            <input @keyup.enter="$emit('sendInputText', searchText)" type="text" placeholder="Ricerca per titolo" v-model="searchText">
-            <button @click="$emit('sendInputText', searchText)"  class="btn btn-success">Search</button>
+            <input @keyup.enter="$emit('sendInputText', searchText),inputsave()" type="text" placeholder="Ricerca per titolo" v-model="searchText">
+            <button @click="$emit('sendInputText', searchText), inputsave()"  class="btn btn-success">Search</button>
         </div>
 
     </div>
@@ -17,6 +17,16 @@ name:'HeaderComponent',
 data(){
     return{
         searchText:''
+    }
+},
+props:{
+inpusave:Boolean
+},
+methods:{
+    inputsave(){
+        if(this.inputsave){
+            this.searchText=''
+        }
     }
 }
 }

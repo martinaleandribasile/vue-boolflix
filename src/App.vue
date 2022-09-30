@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <HeaderComponent @sendInputText="saveInputText"/>
+   <HeaderComponent :inputsave="inputsave" @sendInputText="saveInputText"/>
    <MainComponent :generi="generiApi" :castSerie='castSeries' :castMovie='castMovies' :movies='arrayMovies' :series='arraySeries' :input="textInput" />
   </div>
 </template>
@@ -14,6 +14,7 @@ export default {
   name: 'App',
   data(){
     return{
+      inputsave:false,
       textInput:"",
       queryKey:'64a886681191c335aec070e4355d176f',
       arrayMovies:[],
@@ -77,6 +78,7 @@ export default {
       this.textInput=value
       this.callApiMovies()
       this. callApiSeries()
+      this.inputsave=true
     }
  
   },

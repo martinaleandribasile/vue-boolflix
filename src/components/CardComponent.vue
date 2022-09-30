@@ -28,7 +28,7 @@
             <p> <span>Overwiev: </span>{{arrayElement.overview}}</p>
             <span>Cast: 
                 <ul>
-                    <li class='text-white' v-show='cast.order < 5' v-for="cast in cast[index]" :key="cast.id">{{cast.name}}</li>
+                    <li class='text-white' v-show='cast.order < 5 ' v-for="cast in cast[index]" :key="cast.id">{{cast.name}}</li>
                 </ul>
             </span>
         </div>
