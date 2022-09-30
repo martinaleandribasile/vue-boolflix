@@ -40,21 +40,29 @@ export default {
       if(this.textInput.length>0){
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.queryKey}&query=${this.textInput}&include_adult=true`)
         .then((response)=>{
-          this.arrayMovies=response.data.results
-          this.getIndexArray(this.arrayMovies, this.indexMoviesArr);
-          this.callCastArray(this.indexMoviesArr, this.castMovies, "movie")
-         
+          if(response.status===200){
+            this.arrayMovies=response.data.results
+            this.getIndexArray(this.arrayMovies, this.indexMoviesArr);
+            this.callCastArray(this.indexMoviesArr, this.castMovies, "movie")
+          }
         })
-       
+        .catch((e)=>{
+          console.log(e)
+        })
       }
     },
     callApiSeries(){
       if(this.textInput.length>0){
         axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${this.queryKey}&query=${this.textInput}&include_adult=true`)
         .then((response)=>{
-          this.arraySeries=response.data.results  
-          this.getIndexArray(this.arraySeries, this.indexSeriesArr);  
-          this.callCastArray(this.indexSeriesArr, this.castSeries, "tv")   
+          if(response.status===200){
+            this.arraySeries=response.data.results  
+            this.getIndexArray(this.arraySeries, this.indexSeriesArr);  
+            this.callCastArray(this.indexSeriesArr, this.castSeries, "tv")   
+          }
+        })
+        .catch((e)=>{
+          console.log(e)
         })
       }
     },
