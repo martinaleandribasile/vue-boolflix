@@ -2,7 +2,7 @@
     <div class="element-card p-3 ">
        <div class="position-relative" v-if="!hover">
         <button class="btn btn-warning position-absolute end-0" @click="displayDettails()">Info</button>
-         <img   class=" img-poster-title img-fluid" :src="imgUrl + arrayElement.poster_path" alt=""/>
+         <img @error="errorImg"  class=" img-poster-title img-fluid" :src="imgUrl + arrayElement.poster_path" alt=""/>
         </div>
         <div   v-else class="gap-2 info-container">
             <button @click='displayDettails()' class="btn btn-dark w-20 align-self-end">Back</button> 
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+    import imgDef from '@/assets/img/filmdef.png'
 export default {
     name:'CardComponent',
     data(){
@@ -52,7 +53,9 @@ export default {
         generi:Array
     },
     methods:{
-       
+       errorImg(e){
+        e.target.src=imgDef
+       },
         createIntegerVote(n){
             let vote = Math.floor(n / 2)
             if(vote===0){
